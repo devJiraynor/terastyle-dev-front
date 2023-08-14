@@ -49,16 +49,166 @@
     cursor: pointer;
 }
 
+.normal-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/normal-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.fire-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/fire-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.water-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/water-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.electric-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/electric-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.grass-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/grass-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.ice-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/ice-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.fighting-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/fighting-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.poison-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/poison-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.ground-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/ground-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.flying-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/flying-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.psychic-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/psychic-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.bug-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/bug-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.rock-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/rock-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.ghost-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/ghost-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 .dragon-icon {
     width: 30px;
     height: 30px;
-    background-image: url(assets/images/dragon-icon.png);
+    background-image: url(assets/images/type-icon/dragon-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
-.thunder-icon {
+.dark-icon {
     width: 30px;
     height: 30px;
-    background-image: url(assets/images/thunder-icon.png);
+    background-image: url(assets/images/type-icon/dark-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.steel-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/steel-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.fairy-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/type-icon/fairy-icon.png);
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .type-text-icon {

@@ -32,12 +32,10 @@
     height: 30px;
     background-color: #202020;
     display: flex;
-    border-radius: 54px 54px 54px 54px;
 }
 
-.main-search-container-down {
+.main-search-container {
     margin-top: 20px;
-    border-radius: 54px 54px 54px 54px;
     padding: 10px 24px;
     width: 744px;
     height: 30px;
@@ -59,7 +57,7 @@
     border-top: 1px solid #3e3e3e;
     border-radius: 0px 0px 24px 24px;
     padding: 8px;
-    width: 196px;
+    width: 228px;
     height: 178px;
     background-color: #202020;
 }
@@ -89,8 +87,15 @@
 
 .main-type-menu-item {
     padding: 8px 16px;
+    margin-right: 16px;
     display: flex;
     align-items: center;
+}
+
+.main-type-menu-item:hover {
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.20);
 }
 
 .main-search-type-logo-default-icon {
@@ -110,9 +115,8 @@
     line-height: normal;
 }
 
-
-
 .main-search-input-box {
+    position: relative;
     flex: 1;
     display: flex;
     align-items: center;
@@ -134,6 +138,36 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.search-auto-completion-box {
+    overflow-y: scroll;
+
+    position: absolute;
+    border-top: 1px solid #3e3e3e;
+    border-radius: 0px 0px 24px 24px;
+    padding: 8px;
+    top: 40px;
+    width: 530px;
+    height: 248px;
+    background-color: #202020;
+}
+
+.search-auto-completion-box::-webkit-scrollbar {
+    width: 4px;
+    background: none;
+}
+
+.search-auto-completion-box::-webkit-scrollbar-thumb {
+    margin-right: 8px;
+    width: 1px;
+
+    border-radius: 18px;
+    background:  rgba(255, 255, 255, 0.40);
+}
+
+.search-auto-completion-box::-webkit-scrollbar-track {
+    background: #202020;
 }
 
 .main-ads-area {
