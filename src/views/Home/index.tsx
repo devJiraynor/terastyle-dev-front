@@ -11,6 +11,10 @@ export default function Home() {
   const [dropClick, setDropClick] = useState<boolean>(false);
   // description: 테라스탈 타입 버튼 클릭 상태 //
   const [autoCompleteList, setAutoCompleteList] = useState<string[]>([]);
+
+  // description: 검색창 border-radius class 변수 //
+  // TODO: searchWord 로 지정한것 autoCompleteList 길이 0 으로 변경
+  const mainSearchContainerClass = dropClick && searchWord ? 'main-search-container-all' : dropClick && !searchWord ? 'main-search-container-type' : !dropClick && searchWord ? 'main-search-container-search' : 'main-search-container';
   
   //          function          //
   
@@ -79,15 +83,30 @@ export default function Home() {
         {/* // TODO: 메인 로고 이미지 선택시 해당 포켓몬으로 검색되게 */}
         <div className='main-logo-image background-setting'></div>
         <div className='main-logo-text background-setting'></div>
-        <div className='main-search-container' style={{ borderRadius: `54px 54px ${autoCompleteList.length !== 0 ? '0px' : '54px'} ${dropClick ? '0px' : '54px'}` }}>
+        <div className={mainSearchContainerClass}>
             {dropClick ? <DropDownState /> : <DropUpState />}
             <div className='divider'></div>
             <div className='main-search-input-box'>
                 <input className='main-search-input' placeholder='포켓몬 이름을 입력해주세요.' value={searchWord} onChange={onSearchWordChangeEvent} />
                 { searchWord !== '' && <div className='close-round-duotone-icon background-setting'></div> }
-                { autoCompleteList.length !== 0 && (
+                { /* autoCompleteList.length === 0 */ searchWord !== '' && (
                   <div className='search-auto-completion-box'>
-
+                    <div className='search-auto-completion-container'>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                      <div className='search-auto-completion-item'>리리코</div>
+                    </div>
                   </div>
                 )}
                 <div className='search-icon background-setting' style={{ marginLeft: '16px' }}></div>

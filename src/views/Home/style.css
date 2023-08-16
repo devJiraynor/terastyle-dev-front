@@ -23,17 +23,6 @@
     cursor: pointer;
 }
 
-
-.main-search-container-up {
-    margin-top: 20px;
-    border-radius: 54px 54px 54px 54px;
-    padding: 10px 24px;
-    width: 744px;
-    height: 30px;
-    background-color: #202020;
-    display: flex;
-}
-
 .main-search-container {
     margin-top: 20px;
     padding: 10px 24px;
@@ -41,7 +30,39 @@
     height: 30px;
     background-color: #202020;
     display: flex;
+    border-radius: 54px 54px 54px 54px;
+}
+
+.main-search-container-type {
+    margin-top: 20px;
     border-radius: 54px 54px 54px 0px;
+    padding: 10px 24px;
+    width: 744px;
+    height: 30px;
+    background-color: #202020;
+    display: flex;
+}
+
+
+.main-search-container-search {
+    margin-top: 20px;
+    border-radius: 54px 54px 0px 54px;
+    padding: 10px 24px;
+    width: 744px;
+    height: 30px;
+    background-color: #202020;
+    display: flex;
+}
+
+
+.main-search-container-all {
+    margin-top: 20px;
+    border-radius: 27px 27px 0px 0px;
+    padding: 10px 24px;
+    width: 744px;
+    height: 30px;
+    background-color: #202020;
+    display: flex;
 }
 
 .main-search-type {
@@ -141,7 +162,6 @@
 }
 
 .search-auto-completion-box {
-    overflow-y: scroll;
 
     position: absolute;
     border-top: 1px solid #3e3e3e;
@@ -149,16 +169,22 @@
     padding: 8px;
     top: 40px;
     width: 530px;
-    height: 248px;
+    height: 178px;
     background-color: #202020;
 }
 
-.search-auto-completion-box::-webkit-scrollbar {
+.search-auto-completion-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.search-auto-completion-container::-webkit-scrollbar {
     width: 4px;
     background: none;
 }
 
-.search-auto-completion-box::-webkit-scrollbar-thumb {
+.search-auto-completion-container::-webkit-scrollbar-thumb {
     margin-right: 8px;
     width: 1px;
 
@@ -166,8 +192,24 @@
     background:  rgba(255, 255, 255, 0.40);
 }
 
-.search-auto-completion-box::-webkit-scrollbar-track {
+.search-auto-completion-container::-webkit-scrollbar-track {
     background: #202020;
+}
+
+.search-auto-completion-item {
+    padding: 8px 16px;
+    color: #FFFFFF;
+    font-family: 'Pretendard Variable';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.search-auto-completion-item:hover {
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.20);
 }
 
 .main-ads-area {
