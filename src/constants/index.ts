@@ -1,4 +1,6 @@
-export const teraTypeMenu = [
+import TeraType from "../interface/tera-type.interface";
+
+export const teraTypeMenu: TeraType[] = [
     {
         icon: 'normal-icon',
         color: '#9A9792',
