@@ -129,7 +129,8 @@ export default function Home() {
   }, []);
   //          effect: searchWord 상태 업데이트 시 자동 완성 리스트 필터링          //
   useEffect(() => {
-    const names = pocketmonNames.filter(pocketmonName => pocketmonName.includes(searchWord) && searchWord !== pocketmonName);
+    let names = pocketmonNames.filter(pocketmonName => pocketmonName.includes(searchWord) && searchWord !== pocketmonName);
+    if (searchWord) names = [];
     setAutoCompleteList(names);
   }, [searchWord]);
   
