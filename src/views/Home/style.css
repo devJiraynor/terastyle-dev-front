@@ -176,7 +176,7 @@
     padding: 8px;
     top: 40px;
     width: 530px;
-    height: 178px;
+    max-height: 178px;
     background-color: #202020;
 }
 

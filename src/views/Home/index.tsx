@@ -1,10 +1,18 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect, useRef, KeyboardEvent } from 'react';
 import './style.css';
 import { teraTypeMenu } from '../../constants';
 import TeraType from '../../interface/tera-type.interface';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 //          component: 홈 화면 컴포넌트          //
 export default function Home() {
+
+  //          state: Search Button Ref 상태          //
+  const searchButtonRef = useRef<HTMLDivElement | null>(null);
+
+  //          state: 포켓몬 이름 리스트 상태          //
+  const [pocketmonNames, setPocketmonNames] = useState<string[]>([]);
 
   //          state: 검색어 상태          //
   const [searchWord, setSearchWord] = useState<string>('');
@@ -19,10 +27,10 @@ export default function Home() {
   const [selectedType, setSelectedType] = useState<TeraType | null>(null);
 
   //          variable: 검색창 border-radius class 변수          //
-  // TODO: searchWord 로 지정한것 autoCompleteList 길이 0 으로 변경
-  const mainSearchContainerClass = dropClick && searchWord ? 'main-search-container-all' : dropClick && !searchWord ? 'main-search-container-type' : !dropClick && searchWord ? 'main-search-container-search' : 'main-search-container';
+  const mainSearchContainerClass = dropClick && autoCompleteList.length ? 'main-search-container-all' : dropClick && !autoCompleteList.length ? 'main-search-container-type' : !dropClick && autoCompleteList.length ? 'main-search-container-search' : 'main-search-container';
   
-  //          function          //
+  //          function: 네비게이트 함수          //
+  const navigator = useNavigate();
   
   //          event handler: 입력값 변경 이벤트          //
   const onSearchWordChangeEvent = (event: ChangeEvent<HTMLInputElement>) => setSearchWord(event.target.value);
@@ -30,13 +38,27 @@ export default function Home() {
   //          event handler: 드랍다운 버튼 클릭 이벤트          //
   const onDropClickEvent = () => setDropClick(!dropClick);
 
-  //          event handler: 타입 메뉴 클릭 이벤트          //
+  //          event handler: 타입 메뉴 아이템 클릭 이벤트          //
   const onTypeClickEvent = (teraType: TeraType) => {
     setSelectedType(teraType);
     setDropClick(false);
   }
+
+  //          event handler: 자동완성 메뉴 아이템 클릭 이벤트          //
+  const onAutoCompliteItemClickHandler = (name: string) => setSearchWord(name);
+
   //          event handler: 검색어 리셋 클릭 이벤트          //
   const onResetButtonClinckHandler = () => setSearchWord('');
+
+  //          event handler: 검색 버튼 클릭 이벤트          //
+  const onSearchButtonClickHandler = () => navigator(`/search/${searchWord}`);
+
+  //          event handler: 검색 인풋 엔터 이벤트          //
+  const onSearchInputEnterHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return;
+    if (!searchButtonRef.current) return;
+    searchButtonRef.current.click();
+  }
 
   //          interface: 타입 메뉴 아이템 컴포턴트 Properties          //
   interface MenuItemProps {
@@ -99,7 +121,17 @@ export default function Home() {
     )
   }
 
-  //          effect          //
+  //          effect: 컴포넌트 마운트 시 포켓몬 이름 리스트 불러오기          //
+  useEffect(() => {
+    axios.get('http://localhost:4000/pocketmon/pocketmon-names')
+      .then(response => setPocketmonNames(response.data))
+      .catch(error => setPocketmonNames(['이상해씨', '이상해풀', '이상해꽃', '파이리', '리자드', '리자몽', '꼬부기', '어니부기', '거북왕']));
+  }, []);
+  //          effect: searchWord 상태 업데이트 시 자동 완성 리스트 필터링          //
+  useEffect(() => {
+    const names = pocketmonNames.filter(pocketmonName => pocketmonName.includes(searchWord) && searchWord !== pocketmonName);
+    setAutoCompleteList(names);
+  }, [searchWord]);
   
   //          render: 홈 화면 컴포넌트 렌더링          //
   return (
@@ -111,29 +143,16 @@ export default function Home() {
             {dropClick ? <DropDownState /> : <DropUpState />}
             <div className='divider'></div>
             <div className='main-search-input-box'>
-                <input className='main-search-input' placeholder='포켓몬 이름을 입력해주세요.' value={searchWord} onChange={onSearchWordChangeEvent} />
+                <input className='main-search-input' placeholder='포켓몬 이름을 입력해주세요.' value={searchWord} onChange={onSearchWordChangeEvent} onKeyDown={onSearchInputEnterHandler} />
                 { searchWord !== '' && <div className='close-round-duotone-icon background-setting' onClick={onResetButtonClinckHandler}></div> }
-                { /* autoCompleteList.length === 0 */ searchWord !== '' && (
+                { autoCompleteList.length !== 0 && (
                   <div className='search-auto-completion-box'>
                     <div className='search-auto-completion-container'>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
-                      <div className='search-auto-completion-item'>리리코</div>
+                      {autoCompleteList.map(name => <div className='search-auto-completion-item' onClick={() => onAutoCompliteItemClickHandler(name)}>{name}</div>)}
                     </div>
                   </div>
                 )}
-                <div className='search-icon background-setting' style={{ marginLeft: '16px' }}></div>
+                <div ref={searchButtonRef} className='search-icon background-setting' style={{ marginLeft: '16px' }} onClick={onSearchButtonClickHandler}></div>
             </div>
         </div>
         <div className='main-ads-area'>
