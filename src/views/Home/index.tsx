@@ -4,6 +4,7 @@ import { teraTypeMenu } from '../../constants';
 import TeraType from '../../interface/tera-type.interface';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { usePocketmonNames } from '../../stores';
 
 //          component: 홈 화면 컴포넌트          //
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
   const searchButtonRef = useRef<HTMLDivElement | null>(null);
 
   //          state: 포켓몬 이름 리스트 상태          //
-  const [pocketmonNames, setPocketmonNames] = useState<string[]>([]);
+  const { pocketmonNames, setPocketmonNames } = usePocketmonNames();
 
   //          state: 검색어 상태          //
   const [searchWord, setSearchWord] = useState<string>('');
@@ -51,7 +52,18 @@ export default function Home() {
   const onResetButtonClinckHandler = () => setSearchWord('');
 
   //          event handler: 검색 버튼 클릭 이벤트          //
-  const onSearchButtonClickHandler = () => navigator(`/search/${searchWord}`);
+  const onSearchButtonClickHandler = () => {
+    if (!selectedType) {
+      alert('테라타입을 선택해 주세요.');
+      return;
+    }
+    const hasName = pocketmonNames.includes(searchWord);
+    if (!hasName) {
+      alert('잘못된 포켓몬 이름입니다.');
+      return;
+    }
+    navigator(`/search/${searchWord}/${selectedType.text}`);
+  }
 
   //          event handler: 검색 인풋 엔터 이벤트          //
   const onSearchInputEnterHandler = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -123,7 +135,7 @@ export default function Home() {
 
   //          effect: 컴포넌트 마운트 시 포켓몬 이름 리스트 불러오기          //
   useEffect(() => {
-    axios.get('http://localhost:4000/pocketmon/pocketmon-names')
+    axios.get('http://localhost:4000/pocketmon/names')
       .then(response => setPocketmonNames(response.data))
       .catch(error => setPocketmonNames(['이상해씨', '이상해풀', '이상해꽃', '파이리', '리자드', '리자몽', '꼬부기', '어니부기', '거북왕']));
   }, []);
@@ -132,7 +144,7 @@ export default function Home() {
     let names = pocketmonNames.filter(pocketmonName => pocketmonName.includes(searchWord) && searchWord !== pocketmonName);
     if (!searchWord) names = [];
     setAutoCompleteList(names);
-  }, [searchWord]);
+  }, [searchWord, pocketmonNames]);
   
   //          render: 홈 화면 컴포넌트 렌더링          //
   return (

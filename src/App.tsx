@@ -8,7 +8,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/search/:searchPocketmonName' element={<Search />} />
+      <Route path='/search/:searchPocketmonName/:selectedType' element={<Search />} />
     </Routes>
   );
 }
